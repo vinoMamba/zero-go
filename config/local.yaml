@@ -2,3 +2,12 @@ env: local
 http:
   host: 127.0.0.1
   port: 3000
+
+log:
+  log_level: debug
+  encoding: console           # json or console
+  log_file_name: "./storage/logs/server.log"
+  max_backups: 30
+  max_age: 7
+  max_size: 1024
+  compress: true
