@@ -17,7 +17,8 @@ func main() {
 	logger := log.NewLog(conf)
 
 	db := repository.NewDB(logger, conf)
-	repository.NewRepository(logger, db)
+	q := repository.NewQueries(db)
+	repository.NewRepository(logger, q)
 
 	r, clearup, err := wire.NewApp(conf, logger)
 

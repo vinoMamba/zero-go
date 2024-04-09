@@ -6,17 +6,18 @@ import (
 	"github.com/go-sql-driver/mysql"
 	"github.com/spf13/viper"
 	"github.com/vinoMamba/zero/pkg/log"
+	"github.com/vinoMamba/zero/pkg/queries"
 )
 
 type Repository struct {
-	db     *sql.DB
-	logger *log.Logger
+	queries *queries.Queries
+	logger  *log.Logger
 }
 
-func NewRepository(logger *log.Logger, db *sql.DB) *Repository {
+func NewRepository(logger *log.Logger, queries *queries.Queries) *Repository {
 	return &Repository{
-		logger: logger,
-		db:     db,
+		logger:  logger,
+		queries: queries,
 	}
 }
 
@@ -39,4 +40,8 @@ func NewDB(log *log.Logger, conf *viper.Viper) *sql.DB {
 	log.Info("Database connected")
 
 	return db
+}
+
+func NewQueries(db *sql.DB) *queries.Queries {
+	return queries.New(db)
 }
