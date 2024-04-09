@@ -1,7 +1,12 @@
 env: local
 http:
   port: 3000
-
+db:
+  user: "root"
+  password: "123456"
+  net: "tcp"
+  addr: "127.0.0.1:3306"
+  name: "lazy_doc"
 log:
   log_level: debug
   encoding: console           # json or console

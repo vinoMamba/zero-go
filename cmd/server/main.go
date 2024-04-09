@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/vinoMamba/zero/cmd/server/wire"
+	"github.com/vinoMamba/zero/internal/repository"
 	"github.com/vinoMamba/zero/pkg/config"
 	"github.com/vinoMamba/zero/pkg/log"
 	"go.uber.org/zap"
@@ -14,6 +15,9 @@ func main() {
 	conf := config.NewConfig()
 	// init logger
 	logger := log.NewLog(conf)
+
+	db := repository.NewDB(logger, conf)
+	repository.NewRepository(logger, db)
 
 	r, clearup, err := wire.NewApp(conf, logger)
 
